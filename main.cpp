@@ -7,7 +7,7 @@ int main() {
     const int height = 19; 
     const int width = 36;
 
-    // Карта
+    // Map
     vector<string> layout = {
         "###################################",
         "#................#................#",
@@ -32,7 +32,7 @@ int main() {
 
     Game game(height, width, Position(17, 11));
 
-    // музыка
+    // Music
     CreateThread(0, 0, MusicThread, 0, 0, 0);
 
     system("title PAC-MAN Console");
@@ -46,16 +46,16 @@ int main() {
     while (true) {
         Sleep(200); 
 
-        // обработка клавиш
+        // key processing
         if (_kbhit()) { 
             int key = _getch();
             if (key == 224 && _kbhit()) { 
                 dir = _getch();
             }
-            else if (key == (int)Key::ESCAPE) break; // выход по ESC
+            else if (key == (int)Key::ESCAPE) break; // exit with ESC
         }
 
-        // движение героя
+        // hero's journey
         switch (dir) {
         case (int)Key::LEFT:  game.MoveHero(Key::LEFT); break;
         case (int)Key::RIGHT: game.MoveHero(Key::RIGHT); break;
@@ -63,7 +63,7 @@ int main() {
         case (int)Key::DOWN:  game.MoveHero(Key::DOWN); break;
         }
 
-        // движение врагов
+        // enemy movement
         game.MoveEnemies();
     }
 

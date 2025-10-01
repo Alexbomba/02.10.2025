@@ -8,17 +8,17 @@
 using namespace std;
 
 // ======== ENUMS ========
-// Типы клеток на карте
+// Cell types on the map
 enum class Tile : short { HALL, WALL, COIN, ENEMY };
 
-// Цвета текста в консоли
+// Text colors in the console
 enum class Color : short {
     BLACK, DARKBLUE, DARKGREEN, TURQUOISE, DARKRED,
     PURPLE, DARKYELLOW, GREY, DARKGREY, BLUE, GREEN,
     CYAN, RED, PINK, YELLOW, WHITE
 };
 
-// Коды клавиш (для управления героем)
+// Key codes (for controlling the character)
 enum class Key : short {
     LEFT = 75, RIGHT = 77, UP = 72, DOWN = 80,
     ENTER = 13, SPACE = 32, ESCAPE = 27, BACKSPACE = 8
@@ -62,32 +62,32 @@ public:
 // ======== ИГРА ========
 class Game {
 private:
-    int width, height;      // размеры карты
-    Tile** map;             // динамический массив карты
-    Hero hero;              // объект героя
-    vector<Enemy> enemies; // список врагов
-    int coinsCollected;     // сколько монет собрано
-    int totalCoins;         // всего монет на карте
-    HANDLE h;               // дескриптор консоли (для управления выводом)
+    int width, height;      //card dimensions
+    Tile** map;             // dynamic map array
+    Hero hero;              // hero's object
+    vector<Enemy> enemies;  // list of enemies
+    int coinsCollected;     // how many coins have been collected
+    int totalCoins;         // total coins on the map
+    HANDLE h;               // console descriptor (for output control)
 
 public:
-    Game(int hgt, int wdt, Position heroPos); // конструктор
+    Game(int hgt, int wdt, Position heroPos); // designer
     ~Game(); // деструктор
 
-    void LoadLayout(const vector<string>& layout); // загрузка карты из массива строк
-    void DrawMap();    // нарисовать всю карту
-    void DrawHero();   // нарисовать героя
-    void ShowCoins();  // вывести количество собранных монет
-    void MoveEnemies(); // передвинуть врагов
-    bool MoveHero(Key dir); // передвинуть героя
-    void Map(const string& msg); // записать сообщение в лог-файл
+    void LoadLayout(const vector<string>& layout); // loading a map from an array of strings
+    void DrawMap();    // draw the entire map
+    void DrawHero();   // draw a hero
+    void ShowCoins();  // display the number of coins collected
+    void MoveEnemies(); // move enemies
+    bool MoveHero(Key dir); // move the hero
+    void Map(const string& msg); // write a message to the log file
 
-    // Геттеры
+    // Getters
     int getCollected() const { return this->coinsCollected; }
     int getTotalCoins() const { return this->totalCoins; }
     Position getHeroPos() const { return this->hero.getPos(); }
 };
 
-// ======== МУЗЫКА ========
+// ======== MUSIC ========
 DWORD WINAPI MusicThread(void* param);
 

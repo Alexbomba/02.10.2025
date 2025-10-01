@@ -25,11 +25,11 @@ Game::Game(int hgt, int wdt, Position heroPos)
 
     this->h = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    // Скрываем мигающий курсор
+    // Hide the blinking cursor
     CONSOLE_CURSOR_INFO cursor{ 100, FALSE };
     SetConsoleCursorInfo(this->h, &cursor);
 
-    // создаём двумерный массив для карты
+    // create a two-dimensional array for the map
     map = new Tile * [height];
     for (int i = 0; i < height; i++)
         map[i] = new Tile[width];
@@ -44,13 +44,13 @@ Game::~Game() {
     SetConsoleTextAttribute(h, (int)Color::WHITE);
 }
 
-// Работа с файлами
+// Working with files
 void Game::Map(const string& msg) {
     ofstream f("map.txt", std::ios::app); 
     if (f.is_open()) f << msg << "\n"; 
 }
 
-// Загрузка карты из массива строк
+// Loading a map from an array of strings
 void Game::LoadLayout(const vector<string>& layout) {
     this->enemies.clear();
     this->totalCoins = 0;
@@ -69,7 +69,7 @@ void Game::LoadLayout(const vector<string>& layout) {
     this->Map("Map loaded"); 
 }
 
-// Отрисовка всей карты
+// Drawing the entire map
 void Game::DrawMap() {
     for (int y = 0; y < this->height; y++) {
         for (int x = 0; x < this->width; x++) {
@@ -84,10 +84,10 @@ void Game::DrawMap() {
     }
 }
 
-// Нарисовать героя
+// Draw a hero
 void Game::DrawHero() { this->hero.Draw(this->h); }
 
-// Показать количество монет
+// Show the number of coins
 void Game::ShowCoins() {
     COORD c = { (SHORT)(this->width + 2), 0 };
     SetConsoleCursorPosition(this->h, c);
@@ -97,7 +97,7 @@ void Game::ShowCoins() {
     cout << this->coinsCollected;
 }
 
-// Движение врагов (в сторону героя)
+// Enemy movement (towards the hero)
 void Game::MoveEnemies() {
     for (auto& e : this->enemies) {
         Position p = e.getPos();
@@ -129,7 +129,7 @@ void Game::MoveEnemies() {
     }
 }
 
-// Движение героя
+// The hero's movement
 bool Game::MoveHero(Key dir) {
     Position old = this->hero.getPos();
     Position np = old;
@@ -165,7 +165,7 @@ bool Game::MoveHero(Key dir) {
     return true;
 }
 
-// ======== МУЗЫКА ========
+// ======== MUSIC ========
 DWORD WINAPI MusicThread(void* param) {
     PlaySoundA("Pac-Man-intro-music.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
     return 0;
