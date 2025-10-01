@@ -59,7 +59,7 @@ public:
     void Draw(HANDLE h) const override; 
 };
 
-// ======== ИГРА ========
+// ======== GAME ========
 class Game {
 private:
     int width, height;      //card dimensions
@@ -72,7 +72,7 @@ private:
 
 public:
     Game(int hgt, int wdt, Position heroPos); // designer
-    ~Game(); // деструктор
+    ~Game(); // destrucror
 
     void LoadLayout(const vector<string>& layout); // loading a map from an array of strings
     void DrawMap();    // draw the entire map
