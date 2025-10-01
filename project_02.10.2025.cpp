@@ -35,7 +35,7 @@ Game::Game(int hgt, int wdt, Position heroPos)
         map[i] = new Tile[width];
 }
 
-// Деструктор
+// Destructor
 Game::~Game() {
     for (int i = 0; i < height; i++)
         delete[] map[i];
