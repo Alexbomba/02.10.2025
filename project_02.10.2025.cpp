@@ -1,22 +1,5 @@
 ﻿#include "project_02.10.2025.h"
-#pragma comment(lib, "winmm.lib")
-
 using namespace std;
-
-// ======== HERO & ENEMY ========
-void Hero::Draw(HANDLE h) const {
-    COORD c = { (SHORT)this->pos.x, (SHORT)this->pos.y };
-    SetConsoleCursorPosition(h, c);
-    SetConsoleTextAttribute(h, (int)Color::YELLOW);
-    cout << "C";
-}
-
-void Enemy::Draw(HANDLE h) const {
-    COORD c = { (SHORT)this->pos.x, (SHORT)this->pos.y };
-    SetConsoleCursorPosition(h, c);
-    SetConsoleTextAttribute(h, (int)Color::RED);
-    cout << "O";
-}
 
 // ======== GAME ========
 Game::Game(int hgt, int wdt, Position heroPos)
@@ -165,8 +148,4 @@ bool Game::MoveHero(Key dir) {
     return true;
 }
 
-// ======== MUSIC ========
-DWORD WINAPI MusicThread(void* param) {
-    PlaySoundA("Pac-Man-intro-music.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
-    return 0;
-}
+

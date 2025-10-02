@@ -123,10 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entities.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="music.cpp" />
     <ClCompile Include="project_02.10.2025.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="layout.h" />
     <ClInclude Include="project_02.10.2025.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
